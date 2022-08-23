@@ -23,7 +23,7 @@ const start = async() => {
         await connect(
             "mongodb+srv://Rightson:Rightson@nodeexpressproject.afbca.mongodb.net/Janta?retryWrites=true&w=majority"
         );
-        console.log("connec0ted");
+        console.log("connected");
     } catch (e) {
         console.log(e);
     }
@@ -42,6 +42,7 @@ const io = socket(server, {
     },
 });
 io.on("connection", (socket) => {
+    console.log(users);
     socket.on("new", (data) => {
         handleUser(data, socket.id);
         socket.broadcast.emit("users", users);

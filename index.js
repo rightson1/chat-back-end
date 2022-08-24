@@ -43,9 +43,11 @@ const io = socket(server, {
 });
 io.on("connection", (socket) => {
     console.log(users);
+
     socket.on("new", (data) => {
         handleUser(data, socket.id);
         socket.broadcast.emit("users", users);
+        console.log(data);
     });
     socket.on("disconnect", () => {
         users = users.filter((user) => user.id !== socket.id);

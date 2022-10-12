@@ -17,6 +17,7 @@ router.post("/register", async(req, res) => {
     res.status(200).json(data);
 });
 router.post("/login", async(req, res) => {
+    console.log(req.data);
     const username = await User.findOne({ username: req.body.username });
 
     if (!username) {
